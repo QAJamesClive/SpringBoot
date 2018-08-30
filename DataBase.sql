@@ -1,3 +1,3 @@
-drop database if exists springBookDB;
-create database if not exists springBookDB;
-use springBookDB;
+drop database if exists springBootDB;
+create database if not exists springBootDB;
+use springBootDB;
