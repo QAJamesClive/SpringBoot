@@ -13,5 +13,6 @@ import qa.clive.james.springboot.database.hello.mySpringBootDatabaseApp.model.My
 @Repository
 public interface MySpringBootRepositoryRental extends JpaRepository<MySpringBootDataModelRental,Long> {
 	Page<MySpringBootDataModelRental> findByPersonId(Long personID, Pageable pageable);
+	Page<MySpringBootDataModelRental> findByDvdId(Long dvdID, Pageable pageable);
 
 }

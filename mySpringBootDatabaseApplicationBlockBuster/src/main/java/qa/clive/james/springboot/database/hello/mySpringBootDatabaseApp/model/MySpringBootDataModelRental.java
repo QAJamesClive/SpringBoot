@@ -1,10 +1,8 @@
 package qa.clive.james.springboot.database.hello.mySpringBootDatabaseApp.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
@@ -26,14 +24,17 @@ public class MySpringBootDataModelRental {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
-	private Long dvdId;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "dvdId", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JsonIgnore
+	private MySpringBootDataModelDVD dvdId;
 	
 	@NotNull
 	private int rentalDuration;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "personId", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private MySpringBootDataModelPerson personId;
@@ -49,6 +50,14 @@ public class MySpringBootDataModelRental {
 
 	public void setPersonId(MySpringBootDataModelPerson personId) {
 		this.personId = personId;
+	}
+	
+	public MySpringBootDataModelDVD getDvdId() {
+		return dvdId;
+	}
+
+	public void setDvdId(MySpringBootDataModelDVD dvdId) {
+		this.dvdId = dvdId;
 	}
 
 	public Long getId() {
@@ -75,13 +84,5 @@ public class MySpringBootDataModelRental {
 	public void setRentalDuration(int rentalDuration) {
 		this.rentalDuration = rentalDuration;
 	}
-	
-	
-	
-
-	
-
-	
-	
 	
 }
